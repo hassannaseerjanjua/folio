@@ -26,7 +26,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <span className="dot yellow"></span>
             <span className="dot green"></span>
           </div>
-          <div className="browser-bar">kristi.digital/work/{title.toLowerCase().replace(/\s+/g, '-')}</div>
+          <div className="browser-bar">hassan.dev/work/{title.toLowerCase().replace(/\s+/g, '-')}</div>
         </div>
         <div className="project-preview-content">
           <span className="project-preview-icon">✨</span>

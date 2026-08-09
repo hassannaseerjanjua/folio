@@ -3,6 +3,7 @@ import heroImg from './assets/user_portrait.jpg';
 import FloatingShape from './components/FloatingShape';
 import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
+import HideAndSeekCharacter from './components/HideAndSeekCharacter';
 import './App.css';
 
 // SVGs for Floating elements and icons
@@ -204,7 +205,9 @@ function App() {
       </div>
 
       {/* Central Canvas Container */}
-      <main className="canvas-card">
+      <main className="canvas-card" style={{ position: 'relative', overflow: 'visible' }}>
+        {/* Hide and seek character peeking from edges */}
+        <HideAndSeekCharacter />
         {/* Navigation Header */}
         <header className="header-nav">
           <div className="logo-section">
