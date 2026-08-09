@@ -1,0 +1,560 @@
+/* Main App Layout */
+.portfolio-app-root {
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Floating Shapes Wrapper (hides on smaller viewports to prevent layout overflow) */
+.floating-shapes-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Name Badge styling */
+.name-badge-wrapper {
+  background: var(--color-blue);
+  color: var(--dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 10px 24px;
+  border: var(--border-thick);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Main Card Canvas */
+.canvas-card {
+  width: 100%;
+  background-color: var(--bg-canvas);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+  border-radius: 28px;
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Navigation Header */
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 24px;
+  border-bottom: 2px dashed #D3C5B5;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-svg {
+  height: 32px;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 4px 0;
+  border-bottom: 3px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.nav-link:hover {
+  border-bottom-color: var(--dark);
+}
+
+.header-toggle-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Hamburger button for mobile */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.hamburger-btn .bar {
+  width: 28px;
+  height: 4px;
+  background-color: var(--dark);
+  border-radius: 2px;
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-canvas);
+  border-left: var(--border-thick);
+  z-index: 99;
+  padding: 80px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: -10px 0px 0px rgba(0,0,0,0.15);
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-drawer.open {
+  right: 0;
+}
+
+.drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.drawer-links a {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.drawer-links a:active {
+  border-bottom-color: var(--dark);
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+.hero-text-side {
+  flex: 1.2;
+  text-align: left;
+}
+
+.hero-greeting {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.hero-title {
+  font-size: 3.8rem;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  color: #444;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.hero-cta-btn {
+  padding: 16px 36px;
+  font-size: 1.2rem;
+}
+
+/* Hero media side (Kristina portrait + widgets) */
+.hero-media-side {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portrait-badge-container {
+  position: relative;
+  width: 320px;
+  height: 380px;
+}
+
+.portrait-badge-border {
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  clip-path: url(#badge-clip);
+  position: relative;
+}
+
+.portrait-badge-background {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-color: #ffffff;
+  clip-path: url(#badge-clip);
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.portrait-img {
+  width: 105%;
+  height: 105%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.portrait-badge-container:hover .portrait-img {
+  transform: scale(1.05);
+}
+
+/* Hero Badge Widgets */
+.hero-widget {
+  position: absolute;
+  z-index: 12;
+  filter: drop-shadow(4px 4px 0px #1E1E1E);
+  transition: transform 0.2s ease;
+}
+
+.hero-widget:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.chat-stats {
+  top: 25px;
+  left: -25px;
+}
+
+.eye-widget {
+  bottom: 120px;
+  right: -20px;
+}
+
+.blue-arrow {
+  top: -15px;
+  right: 50px;
+}
+
+/* Services / What I do Section */
+.services-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-pre-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.service-card {
+  background: #FFFFFF;
+  border: 4px solid var(--dark);
+  box-shadow: var(--shadow-md);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  cursor: pointer;
+}
+
+.service-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: var(--border-thin);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.service-icon {
+  font-size: 1.8rem;
+}
+
+.service-name {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.service-desc {
+  color: #555;
+  font-size: 0.98rem;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.service-action-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+}
+
+.service-card:hover .service-action-btn {
+  text-decoration: underline;
+}
+
+/* Portfolio Section */
+.work-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Case Study Modal Custom Styles */
+.project-modal {
+  max-width: 600px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-modal-header {
+  padding: 40px 32px;
+  border-bottom: 4px solid var(--dark);
+  text-align: left;
+}
+
+.project-modal-header h3 {
+  font-size: 2.2rem;
+  color: var(--dark);
+}
+
+.project-modal-body {
+  padding: 32px;
+  text-align: left;
+}
+
+.modal-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.modal-lead-desc {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.modal-detail-section {
+  margin-bottom: 20px;
+}
+
+.modal-detail-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--dark);
+}
+
+.modal-detail-section p {
+  font-size: 0.98rem;
+  color: #555;
+}
+
+.modal-detail-section.highlight {
+  background: var(--bg-page);
+  border: var(--border-thin);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-detail-section.highlight .metric-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--dark);
+}
+
+.work-inquiry-btn {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+/* Canvas Footer */
+.canvas-footer {
+  width: 100%;
+  padding-top: 24px;
+  border-top: 2px dashed #D3C5B5;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .floating-shapes-wrapper {
+    display: none; /* Hide floating shapes on tablet and mobile to prevent layout clipping */
+  }
+
+  .canvas-card {
+    gap: 40px;
+    padding: 24px;
+  }
+
+  .hero-section {
+    flex-direction: column-reverse;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-text-side {
+    text-align: center;
+  }
+
+  .hero-desc {
+    margin-inline: auto;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .portrait-badge-container {
+    width: 260px;
+    height: 310px;
+  }
+
+  .chat-stats {
+    transform: scale(0.85);
+    top: 10px;
+    left: -15px;
+  }
+
+  .eye-widget {
+    transform: scale(0.85);
+    bottom: 80px;
+    right: -15px;
+  }
+
+  .blue-arrow {
+    transform: scale(0.85);
+    top: -20px;
+    right: 30px;
+  }
+}
